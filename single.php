@@ -38,29 +38,7 @@ while(have_posts()){
                                             </ul>
                                         </div>
                                         <?php } ?>
-
-                                        <!-- Post Like & Post Comment -->
-                                        <div class="d-flex align-items-center">
-                                            <a href="#" data-postid="<?php echo get_the_ID(); ?>" data-exists="<?php echo userLikes(get_the_ID())->found_posts ? 'yes' : 'no'; ?>" data-likeid="<?php echo userLikes(get_the_ID())->found_posts ? userLikes(get_the_ID())->posts[0]->ID : ''; ?>" class="post-like"><i class="fa fa-heart-o"></i><i class="fa fa-heart"></i><span class="like-count"><?php echo likesOfPost(get_the_ID())->found_posts; ?></span></a>
-                                            <a href="<?php echo esc_url(get_the_permalink()); ?>" class="post-comment"><img src="<?php echo get_theme_file_uri("/img/core-img/chat.png");?>" alt=""> <span>10</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- About Author -->
-                        <div class="blog-post-author d-flex">
-                            <div class="author-thumbnail">
-                                <img src="img/bg-img/32.jpg" alt="">
-                            </div>
-                            <div class="author-info">
-                                <a href="#" class="author-name">James Smith, <span>The Author</span></a>
-                                <p>Donec turpis erat, scelerisque id euismod sit amet, fermentum vel dolor. Nulla facilisi. Sed pellen tesque lectus et accu msan aliquam. Fusce lobortis cursus quam, id mattis sapien.</p>
-                            </div>
-                        </div>
-
-<?php
+                                        <?php
 
 $comments = get_comments([
     'post_id'=>get_the_ID(),
@@ -68,6 +46,18 @@ $comments = get_comments([
 ]);
 
 ?>
+                                        <!-- Post Like & Post Comment -->
+                                        <div class="d-flex align-items-center">
+                                            <a href="#" data-postid="<?php echo get_the_ID(); ?>" data-exists="<?php echo userLikes(get_the_ID())->found_posts ? 'yes' : 'no'; ?>" data-likeid="<?php echo userLikes(get_the_ID())->found_posts ? userLikes(get_the_ID())->posts[0]->ID : ''; ?>" class="post-like"><i class="fa fa-heart-o"></i><i class="fa fa-heart"></i><span class="like-count"><?php echo likesOfPost(get_the_ID())->found_posts; ?></span></a>
+                                            <a href="<?php echo esc_url(get_the_permalink()); ?>" class="post-comment"><img src="<?php echo get_theme_file_uri("/img/core-img/chat.png");?>" alt=""> <span><?php echo count($comments); ?></span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
 
 
                         <!-- Comment Area Start -->

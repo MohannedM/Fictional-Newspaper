@@ -28,10 +28,18 @@
                                 <div class="post-meta">
                                     <p class="post-author">By <a href="<?php echo esc_url(get_author_posts_url(get_the_author_ID())); ?>"><?php echo get_the_author(); ?></a></p>
                                     <p class="post-excerp"><?php echo has_excerpt() ? get_the_excerpt() : wp_trim_words(get_the_content(), 30); ?></p>
+                                    <?php
+
+$comments = get_comments([
+    'post_id'=>get_the_ID(),
+    'number'=>10
+]);
+
+?>
                                         <!-- Post Like & Post Comment -->
                                         <div class="d-flex align-items-center">
-                                            <a href="#" class="post-like"><img src="<?php echo get_theme_file_uri("/img/core-img/like.png");?>" alt=""> <span>392</span></a>
-                                            <a href="#" class="post-comment"><img src="<?php echo get_theme_file_uri("/img/core-img/chat.png");?>" alt=""> <span>10</span></a>
+                                            <a href="#" data-postid="<?php echo get_the_ID(); ?>" data-exists="<?php echo userLikes(get_the_ID())->found_posts ? 'yes' : 'no'; ?>" data-likeid="<?php echo userLikes(get_the_ID())->found_posts ? userLikes(get_the_ID())->posts[0]->ID : ''; ?>" class="post-like"><i class="fa fa-heart-o"></i><i class="fa fa-heart"></i><span class="like-count"><?php echo likesOfPost(get_the_ID())->found_posts; ?></span></a>
+                                            <a href="<?php echo esc_url(get_the_permalink()); ?>" class="post-comment"><img src="<?php echo get_theme_file_uri("/img/core-img/chat.png");?>" alt=""> <span><?php echo count($comments); ?></span></a>
                                         </div>
                                 </div>
                             </div>
